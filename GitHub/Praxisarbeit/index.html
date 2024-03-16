@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieLegends</title>
+</head>
+<body>
+    <h1>Willkommen bei MovieLegends</h1>
+    <h2>Filme</h2>
+    {% for movie in movies %}
+        <div>
+            <h3>{{ movie.title }}</h3>
+            <p>Bewertung: {{ movie.rating }}/5</p>
+            <p>Kommentar: {{ movie.comment }}</p>
+            <p>Hinzugefügt von: {{ movie.added_by }}</p>
+            {% if 'username' in request.cookies %}
+                {% if request.cookies.get('username') == 'admin' %}
+                    <form action="/delete_movie/{{ loop.index0 }}" method="POST">
+                        <input type="submit" value="Film löschen">
+                    </form>
+                {% endif %}
+            {% endif %}
+        </div>
+    {% endfor %}
+    {% if 'username' in request.cookies %}
+        <h2>Film hinzufügen</h2>
+        <form action="/add_movie" method="POST">
+            <label for="title">Titel:</label><br>
+            <input type="text" id="title" name="title" required><br>
+            <label for="rating">Bewertung (1-5):</label><br>
+            <input type="number" id="rating" name="rating" min="1" max="5" required><br>
+            <label for="comment">Kommentar:</label><br>
+            <textarea id="comment" name="comment" required></textarea><br>
+            <input type="submit" value="Film hinzufügen">
+        </form>
+    {% endif %}
+</body>
+</html>
