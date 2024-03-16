@@ -5,6 +5,8 @@
 install_tools() {
     echo "Aktualisiere das Paketverzeichnis..."
     sudo apt update
+    # Sicherheitsupdates installieren.
+    sudo apt upgrade -y
 
     echo "Installiere Git..."
     sudo apt install git -y
