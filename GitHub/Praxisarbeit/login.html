@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - MovieLegends</title>
+</head>
+<body>
+    <h1>Login - MovieLegends</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <form action="/login" method="POST">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br>
+        <label for="lastname">Nachname:</label><br>
+        <input type="text" id="lastname" name="lastname" required><br>
+        <label for="username">Benutzername (maximal 100 Zeichen, keine Sonderzeichen):</label><br>
+        <input type="text" id="username" name="username" maxlength="100" required pattern="[A-Za-z0-9]+"><br>
+        <input type="submit" value="Registrieren">
+    </form>
+</body>
+</html>
