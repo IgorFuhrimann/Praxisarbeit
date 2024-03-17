@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.secret_key = 'geheimnis'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://username:password@localhost/movie_legends_db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:AdminMariaDB$1@localhost/movie_legends_db'
 db = SQLAlchemy(app)
 
 # Datenbankmodell für Benutzer
