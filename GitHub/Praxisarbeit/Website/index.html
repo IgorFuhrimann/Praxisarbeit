@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Legends</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea {
+            width: calc(100% - 12px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 10px;
+            background-color: #f9f9f9;
+            margin-bottom: 5px;
+            border-radius: 3px;
+        }
+
+        li:last-child {
+            margin-bottom: 0;
+        }
+
+        .login-btn,
+        .logout-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .logout-btn:hover,
+        .login-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .username {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Movie Legends</h1>
+        <!--Benutzername anzeigen-->
+        <div class="username">
+            {% if username %}
+                Benutzername: {{ username }}
+            {% endif %}
+        </div>
+        <!-- Formular zum Hinzufügen eines Films -->
+        <form action="/add_movie" method="POST">
+            <label for="title">Titel:</label>
+            <input type="text" id="title" name="title">
+
+            <label for="rating">Bewertung (1-6):</label>
+            <input type="number" id="rating" name="rating" min="1" max="6" required>
+
+            <label for="comment">Kommentar:</label>
+            <textarea id="comment" name="comment"></textarea>
+
+            <button type="submit">Film hinzufügen</button>
+        </form>
+        
+        {% if username %}
+            <!-- Logout-Button -->
+            <form action="/logout" method="POST">
+                <button class="logout-btn" type="submit">Abmelden</button>
+            </form>
+        {% else %}
+            <!-- Anmelde-Button -->
+            <button class="login-btn" onclick="window.location.href='/login'">Anmelden</button>
+        {% endif %}
+
+        <!-- Liste der Filme -->
+        <ul>
+            {% for movie in movies %}
+                <li>{{ movie.title }} - Bewertung: {{ movie.rating }} - Kommentar: {{ movie.comment }} - Hinzugefügt von: {{ movie.added_by }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

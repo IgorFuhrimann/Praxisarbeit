@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neuen Film hinzufügen</title>
+</head>
+<body>
+    <h1>Neuen Film hinzufügen</h1>
+    <form action="/add_movie" method="POST">
+        <label for="title">Titel:</label><br>
+        <input type="text" id="title" name="title"><br>
+        <label for="rating">Bewertung (1-6):</label><br>
+        <input type="number" id="rating" name="rating" min="1" max="6" required><br>
+        <label for="comment">Kommentar:</label><br>
+        <textarea id="comment" name="comment"></textarea><br>
+        <button type="submit">Film hinzufügen</button>
+    </form>
+    <ul>
+        {% for movie in movies %}
+        <li>{{ movie.title }} - Bewertung: {{ movie.rating }} - Kommentar: {{ movie.comment }} - Hinzugefügt von: {{ movie.added_by }}</li>
+        {% endfor %}
+    </ul>
+    
+</body>
+</html>
