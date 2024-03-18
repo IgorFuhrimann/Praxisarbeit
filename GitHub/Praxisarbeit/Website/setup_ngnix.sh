@@ -4,7 +4,7 @@
 sudo tee /etc/nginx/sites-available/movielegends.com.conf > /dev/null <<EOF
 server {
     listen 80;
-    server_name movielegends.com www.movielegends.com;
+    server_name movielegendsch.net www.movielegendsch.net;
 
     location / {
         proxy_pass http://localhost:5000; # Hier den Port deiner Flask-Anwendung angeben
