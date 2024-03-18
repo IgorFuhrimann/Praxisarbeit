@@ -1,0 +1,8 @@
+vcid_adm
+Vcid$Admin2024
+
+DB:
+root
+AdminMariaDB$1
+nginx
+AdminMariaDB$1
